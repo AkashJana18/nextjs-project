@@ -47,5 +47,14 @@ export async function GET(requset: Request) {
       },
       { status: 200 }
     );
-  } catch (error) {}
+  } catch (error) {
+    console.error("Failed to get messages", error)
+    return Response.json(
+      {
+        success: false,
+        messages: "Failed to get messages", //mongodb aggregation returns a array of objects
+      },
+      { status: 500 }
+    );
+  }
 }
