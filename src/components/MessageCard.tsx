@@ -2,9 +2,6 @@
 import React from "react";
 import {
   Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -20,35 +17,45 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import dayjs from 'dayjs';
 import { Button } from "./ui/button";
 import { X } from "lucide-react";
 import { Message } from "@/models/User.model";
 import { useToast } from "./ui/use-toast";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { ApiResponse } from "@/types/ApiResponse";
 
 type MessageCardProps = {
   message: Message;
-  onMessageDelete: (messageId: string) => void;
+  onMessageDelete: (messageId: any) => void;
 };
 
 const MessageCard = ({ message, onMessageDelete }: MessageCardProps) => {
   const { toast } = useToast();
   const handleDeleteConfirm = async () => {
-    const response = await axios.delete<ApiResponse>(
-      `/api/delete-message/${message._id}`
-    );
+    try {
+      const response = await axios.delete<ApiResponse>(
+        `/api/delete-message/${message._id}`
+      );
 
-    toast({
-      title: response.data.message,
-    });
-    onMessageDelete(message._id);
+      toast({
+        title: response.data.message,
+      });
+      onMessageDelete(message._id);
+    } catch (error) {
+      const axiosError = error as AxiosError<ApiResponse>;
+      toast({
+        title: "Error",
+        description:
+          axiosError.response?.data.message ?? "Failed to delete message",
+        variant: "destructive",
+      });
+    }
   };
-
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Card Title</CardTitle>
+        <CardTitle>{message.content}</CardTitle>
         <AlertDialog>
           <AlertDialogTrigger asChild>
             <Button variant="destructive">
@@ -59,8 +66,7 @@ const MessageCard = ({ message, onMessageDelete }: MessageCardProps) => {
             <AlertDialogHeader>
               <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
               <AlertDialogDescription>
-                This action cannot be undone. This will permanently delete your
-                account and remove your data from our servers.
+                This action cannot be undone. This will permanently delete this message
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
@@ -71,14 +77,10 @@ const MessageCard = ({ message, onMessageDelete }: MessageCardProps) => {
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
-        <CardDescription>Card Description</CardDescription>
+        <div className="text-sm">
+          {dayjs(message.createdAt).format('MMM D,YYYY h:mm A')}
+        </div>
       </CardHeader>
-      {/* <CardContent>
-        <p>Card Content</p>
-      </CardContent> */}
-      {/* <CardFooter>
-        <p>Card Footer</p>
-      </CardFooter> */}
     </Card>
   );
 };

@@ -11,6 +11,7 @@ import { ApiResponse } from "@/types/ApiResponse";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios, { AxiosError } from "axios";
 import { Loader2, RefreshCcw } from "lucide-react";
+import { User } from "next-auth";
 import { useSession } from "next-auth/react";
 import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -52,12 +53,12 @@ const dashboard = () => {
     } finally {
       setIsSwitchLoading(false);
     }
-  }, [setValue]);
+  }, [setValue, toast]);
 
   const fetchMessage = useCallback(
     async (refresh: boolean = false) => {
       setIsLoading(true);
-      setIsSwitchLoading(true);
+      setIsSwitchLoading(false);
       try {
         const response = await axios.get<ApiResponse>("/api/get-messages");
         setMessages(response.data.messages || []);
@@ -82,14 +83,14 @@ const dashboard = () => {
         setIsSwitchLoading(false);
       }
     },
-    [setIsLoading, setMessages]
+    [setIsLoading, setMessages, toast]
   );
 
   useEffect(() => {
     if (!session || !session.user) return;
     fetchMessage(); //error
     fetchAcceptMessage();
-  }, [session, setValue, fetchAcceptMessage, fetchMessage]);
+  }, [session, setValue, toast, fetchAcceptMessage, fetchMessage]);
 
   //handle switch
   const handleSwitchChange = async () => {
@@ -108,15 +109,16 @@ const dashboard = () => {
         title: "Error",
         description:
           axiosError.response?.data.message ||
-          "Failed to fetch message settings",
+          "Failed to update message settings",
         variant: "destructive",
       });
     }
   };
 
-  const { username } = session?.user;
+  const { username } = session?.user as User;
   const baseUrl = `${window.location.protocol}//${window.location.host}`;
   const profileUrl = `${baseUrl}/u/${username}`;
+
   const copyToClipboard = () => {
     navigator.clipboard.writeText(profileUrl);
     toast({
