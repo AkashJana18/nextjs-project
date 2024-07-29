@@ -26,14 +26,16 @@ const Home = () => {
         </section>
         <Carousel
           plugins={[Autoplay({ delay: 5000 })]}
-          className="w-full max-w-xs"
+          className="w-full max-w-lg"
         >
           <CarouselContent>
             {messages.map((message, index) => (
               <CarouselItem key={index}>
                 <div className="p-1">
                   <Card>
-                    <CardHeader>{message.title}</CardHeader>
+                    <CardHeader className="font-bold">
+                      {message.title}
+                    </CardHeader>
                     <CardContent className="flex flex-col md:flex-row items-start space-y-2 md:space-y-0 md:space-x-4">
                       <Mail className="flex-shrink-0" />
                       <div>
@@ -51,10 +53,15 @@ const Home = () => {
           <CarouselPrevious />
           <CarouselNext />
         </Carousel>
+        <p className="m-5 p-1 md:mt-4 text-center md:text-lg">
+          Community Guidelines for a Safe and Respectful Experience Welcome to
+          our Mystery Mesasge platform! To ensure a positive and secure
+          environment for everyone, please adhere to the guidelines.
+        </p>
       </main>
 
       {/* Footer */}
-      <footer className="text-center p-4 md:p-6 bg-gray-900 text-white">
+      <footer className="text-center p-4 md:p-6 bg-gray-900 text-white bottom-0">
         © 2024 Mystery Message. All rights reserved.
       </footer>
     </>
