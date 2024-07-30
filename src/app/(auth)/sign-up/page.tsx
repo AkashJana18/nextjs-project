@@ -29,7 +29,7 @@ const page = () => {
   const [usernameMessage, setUsernameMessage] = useState("");
   const [isCheckingUsername, setIsCheckingUsername] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const debounced = useDebounceCallback(setUsername, 500);
+  const debounced = useDebounceCallback(setUsername, 300);
 
   //zod implementation
   const form = useForm<z.infer<typeof signUpSchema>>({
@@ -106,7 +106,7 @@ const page = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Username</FormLabel>
-                  <FormControl>
+                  {/* <FormControl> */}
                     <Input
                       placeholder="username"
                       {...field}
@@ -115,7 +115,7 @@ const page = () => {
                         debounced(e.target.value);
                       }}
                     />
-                  </FormControl>
+                  {/* </FormControl> */}
                   {isCheckingUsername && <Loader2 className="animate-spin" />}
                   <p
                     className={`text-sm 
@@ -141,9 +141,9 @@ const page = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Email</FormLabel>
-                  <FormControl>
+                  {/* <FormControl> */}
                     <Input placeholder="email" {...field} />
-                  </FormControl>
+                  {/* </FormControl> */}
                   <FormMessage />
                 </FormItem>
               )}
@@ -154,9 +154,9 @@ const page = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Password</FormLabel>
-                  <FormControl>
+                  {/* <FormControl> */}
                     <Input type="password" placeholder="password" {...field} />
-                  </FormControl>
+                  {/* </FormControl> */}
                   <FormMessage />
                 </FormItem>
               )}
