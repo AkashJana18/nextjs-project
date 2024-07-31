@@ -1,3 +1,13 @@
+# Mystery Message
+Mystery Message is a platform that allows users to send and receive anonymous messages. It provides a space for honest communication without revealing identities, enabling users to share their thoughts freely and receive candid feedback or messages from others. The website emphasizes privacy and anonymity, creating an environment where users can express themselves without fear of judgment or repercussions.
+
+Key Features:
+- Next.js: Framework for server-rendered React applications.
+- Tailwind CSS: Utility-first CSS framework for styling.
+- TypeScript: Ensures type safety throughout the project.
+- Eslint: Maintains code quality and consistency.
+- PostCSS: Used alongside Tailwind for processing CSS.
+  
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
