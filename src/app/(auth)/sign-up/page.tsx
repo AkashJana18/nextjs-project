@@ -76,11 +76,11 @@ const page = () => {
 
       router.replace(`/verify/${username}`);
     } catch (error) {
-      console.error("Error while sign-up", error);
+      console.error("Verification failed", error);
       const axiosError = error as AxiosError<ApiResponse>;
-      let errorMessage = axiosError.response?.data.message;
+      let errorMessage = axiosError.response?.data.message || "User with same email exist";
       toast({
-        title: "Success",
+        title: "Sign up failed",
         description: errorMessage,
         variant: "destructive",
       });
