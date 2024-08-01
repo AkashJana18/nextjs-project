@@ -13,7 +13,15 @@ Key Features:
 - RESEND_API_KEY = ****
 - NEXTAUTH_SECRET = ****
 - OPENAI_API_KEY = ****
-  
+
+Project glimpse: 
+![image](https://github.com/user-attachments/assets/78a289b8-7fee-44fd-9df8-174d3bcde2fe)
+![image](https://github.com/user-attachments/assets/560c7b74-4fd3-46d8-9511-0069b45f445f)
+![image](https://github.com/user-attachments/assets/f66f350f-60fd-45e3-a92c-93bfbecba2ad)
+![image](https://github.com/user-attachments/assets/f72b5dab-a86e-4379-b1f2-49b553e4bd59)
+
+Project will be deployed soon...
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
