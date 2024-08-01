@@ -9,10 +9,10 @@ Key Features:
 - PostCSS: Used alongside Tailwind for processing CSS.
 
 .env variables:
-MONGODB_URI = ****
-RESEND_API_KEY = ****
-NEXTAUTH_SECRET = ****
-OPENAI_API_KEY = ****
+- MONGODB_URI = ****
+- RESEND_API_KEY = ****
+- NEXTAUTH_SECRET = ****
+- OPENAI_API_KEY = ****
   
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
